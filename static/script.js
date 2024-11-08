@@ -31,9 +31,11 @@ const get = () => {
 
 // POST function
 const post = () => {
-  axios.post(`/create`, {   name : DOM.inputName.value,
-                            description : DOM.inputDescription.value, 
-                            price : DOM.inputPrice.value})
+  axios.post(`/create`, {
+    name: DOM.inputName.value,
+    description: DOM.inputDescription.value,
+    price: DOM.inputPrice.value
+  })
     .then((response) => {
       console.log(response);
       get();
@@ -53,24 +55,26 @@ const getOne = () => {
 }
 
 // PUT function
-const put = () => { 
-  axios.put(`/update/${DOM.inputUpdateID.value}`, { name : DOM.inputUpdateName.value,
-                                                    description : DOM.inputUpdateDescription.value,
-                                                    price : DOM.inputUpdatePrice.value})
+const put = () => {
+  axios.put(`/update/${DOM.inputUpdateID.value}`, {
+    name: DOM.inputUpdateName.value,
+    description: DOM.inputUpdateDescription.value,
+    price: DOM.inputUpdatePrice.value
+  })
     .then((response) => {
-     console.log(response);
-     get();
+      console.log(response);
+      get();
     }).catch((err) => {
       console.log(err);
     });
 }
 
 // DELETE function
-const del = () => { 
+const del = () => {
   axios.delete(`/delete/${DOM.inputDeleteID.value}`)
     .then((response) => {
-     console.log(response);
-     get();
+      console.log(response);
+      get();
     }).catch((err) => {
       console.log(err);
     });
@@ -81,6 +85,7 @@ DOM.buttonCreate.onclick = () => post();
 DOM.buttonReadOne.onclick = () => getOne();
 DOM.buttonUpdate.onclick = () => put();
 DOM.buttonDelete.onclick = () => del();
+DOM.buttonReadAll.onclick = () => get();
 
-// run the get function on page load
-get();
+// // run the get function on page load
+// get();

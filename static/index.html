@@ -1,20 +1,30 @@
 <!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
 
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
+    <title>Home</title>
+    <meta http-equiv="pragma" content="no-cache" />
     <div class="container-sm px-4">
         <div class="row gx-5">
-            <h1>REST Application</h1>
+            <h1>Asher's Amazing REST Application</h1>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous"></script>
             <div class="col-6">
                 <form class="mb-2">
                     <h2>Create</h2>
                     <input type="text" id="inputName" class="form-control" placeholder="enter item name to create" />
-                    <input type="text" id="inputDescription" class="form-control mt-2" placeholder="enter item description to create" />
-                    <input type="number" id="inputPrice" class="form-control mt-2" placeholder="enter item price to create" />
+                    <input type="text" id="inputDescription" class="form-control mt-2"
+                        placeholder="enter item description to create" />
+                    <input type="number" id="inputPrice" class="form-control mt-2"
+                        placeholder="enter item price to create" />
                     <button type="button" class="btn btn-primary mt-2" id="buttonCreate">POST</button>
                     <input type="text" style="display: none;" />
                 </form>
@@ -23,16 +33,20 @@
                     <h2>Read One</h2>
                     <input type="number" id="inputID" class="form-control" placeholder="enter id of item to get" />
                     <input type="text" style="display: none;" />
-                    <button type="button" class="btn btn-primary mt-2" id="buttonReadOne">GET One</button>
+                    <button type="button" class="btn btn-primary mt-2" id="buttonReadOne">GET ONE</button>
                     <div id="singleOutput"></div>
                 </form>
 
                 <form class="mb-2">
                     <h2>Update</h2>
-                    <input type="number" id="inputUpdateID" class="form-control" placeholder="enter id of item to update" />
-                    <input type="text" id="inputUpdateName" class="form-control mt-2" placeholder="enter name of item to update" />
-                    <input type="text" id="inputUpdateDescription" class="form-control mt-2" placeholder="enter description of item to update" />
-                    <input type="number" id="inputUpdatePrice" class="form-control mt-2" placeholder="enter price of item to update" />
+                    <input type="number" id="inputUpdateID" class="form-control"
+                        placeholder="enter id of item to update" />
+                    <input type="text" id="inputUpdateName" class="form-control mt-2"
+                        placeholder="enter name of item to update" />
+                    <input type="text" id="inputUpdateDescription" class="form-control mt-2"
+                        placeholder="enter description of item to update" />
+                    <input type="number" id="inputUpdatePrice" class="form-control mt-2"
+                        placeholder="enter price of item to update" />
                     <button type="button" class="btn btn-primary mt-2" id="buttonUpdate">PUT</button>
                 </form>
 
@@ -48,6 +62,7 @@
             <div class="col-6">
                 <form class="mb-2">
                     <h2>Read All</h2>
+                    <button type="button" class="btn btn-primary mt-2" id="buttonReadAll">GET ALL</button>
                     <ul id="listOutput"></ul>
                 </form>
 

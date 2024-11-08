@@ -16,3 +16,5 @@ export const buttonUpdate = document.getElementById(`buttonUpdate`);
 
 export const inputDeleteID = document.getElementById(`inputDeleteID`);
 export const buttonDelete = document.getElementById(`buttonDelete`);
+
+export const buttonReadAll = document.getElementById(`buttonReadAll`);

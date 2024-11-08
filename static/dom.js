@@ -18,3 +18,6 @@ export const inputDeleteID = document.getElementById(`inputDeleteID`);
 export const buttonDelete = document.getElementById(`buttonDelete`);
 
 export const buttonReadAll = document.getElementById(`buttonReadAll`);
+
+export const table = document.getElementById(`table`);
+export const tablebody = document.getElementById(`tablebody`);

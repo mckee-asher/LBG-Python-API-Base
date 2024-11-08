@@ -5,15 +5,25 @@ import * as DOM from './dom.js';
 
 // list item function
 const writeItem = item => {
-  const child = document.createElement(`li`);
+  const child = document.createElement(`tr`);
   child.id = item._id;
-  child.innerHTML = `${JSON.stringify(item)}`;
-  DOM.listOutput.appendChild(child);
+  // child.innerHTML = `${JSON.stringify(item)}`;
+  let parsedData = item;
+  for (let key in parsedData) {
+    let row = document.createElement(`td`);
+    row.innerHTML = parsedData[key];
+    child.appendChild(row);
+  }
+  DOM.tablebody.appendChild(child);
 }
 
 // GET all function
 const get = () => {
-  DOM.listOutput.innerHTML = ``;
+  // console.log(DOM.table);
+  while (DOM.tablebody.hasChildNodes()) {
+    DOM.tablebody.removeChild(DOM.tablebody.firstChild);
+  }
+  console.log(DOM.tablebody);
 
   axios.get(`/read`)
     .then((response) => {
@@ -23,6 +33,7 @@ const get = () => {
         for (let item of response.data) {
           writeItem(item);
         }
+
       }
     }).catch((err) => {
       console.log(err);
@@ -86,6 +97,3 @@ DOM.buttonReadOne.onclick = () => getOne();
 DOM.buttonUpdate.onclick = () => put();
 DOM.buttonDelete.onclick = () => del();
 DOM.buttonReadAll.onclick = () => get();
-
-// // run the get function on page load
-// get();

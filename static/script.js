@@ -91,9 +91,28 @@ const del = () => {
     });
 }
 
+// DELETE ALL function
+// const delAll = () => {
+//   axios.delete(`/delete`)
+//     .then((response) => {
+//       if (!Array.isArray(response.data)) {
+//         axios.delete(`/delete/${response.data[0]._id}`);
+//       } else {
+//         for (let item of response.data) {
+//           axios.delete(`/delete/${item[i].id}`);
+//         }
+//       }
+//     }).catch((err) => {
+//       console.log(err);
+//     });
+// }
+
+
+
 // set up the buttons' on click events
 DOM.buttonCreate.onclick = () => post();
 DOM.buttonReadOne.onclick = () => getOne();
 DOM.buttonUpdate.onclick = () => put();
 DOM.buttonDelete.onclick = () => del();
 DOM.buttonReadAll.onclick = () => get();
+DOM.buttonDeleteAll.onclick = () => delAll();

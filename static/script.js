@@ -19,7 +19,6 @@ const writeItem = item => {
 
 // GET all function
 const get = () => {
-  // console.log(DOM.table);
   while (DOM.tablebody.hasChildNodes()) {
     DOM.tablebody.removeChild(DOM.tablebody.firstChild);
   }
@@ -92,21 +91,21 @@ const del = () => {
 }
 
 // DELETE ALL function
-// const delAll = () => {
-//   axios.delete(`/delete`)
-//     .then((response) => {
-//       if (!Array.isArray(response.data)) {
-//         axios.delete(`/delete/${response.data[0]._id}`);
-//       } else {
-//         for (let item of response.data) {
-//           axios.delete(`/delete/${item[i].id}`);
-//         }
-//       }
-//     }).catch((err) => {
-//       console.log(err);
-//     });
-// }
+const delAll = () => {
+  axios.delete(`/deleteAll`).then((response) => {
+    console.log(response);
 
+    //clears the html table
+
+    while (DOM.tablebody.hasChildNodes()) {
+      DOM.tablebody.removeChild(DOM.tablebody.firstChild);
+    }
+    console.log(DOM.tablebody);
+
+  }).catch((err) => {
+    console.log(err);
+  });
+}
 
 
 // set up the buttons' on click events

@@ -92,7 +92,8 @@ const del = () => {
 
 // DELETE ALL function
 const delAll = () => {
-  axios.delete(`/deleteAll`).then((response) => {
+  axios.delete(`/deleteAll`)
+  .then((response) => {
     console.log(response);
 
     //clears the html table

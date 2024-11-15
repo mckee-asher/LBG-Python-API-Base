@@ -14,7 +14,7 @@ pipeline {
                 sh "echo 'Cleanup done.'"
             }
         }
-        
+
         stage('Build') {
             steps {
                 sh "echo 'Building the Docker image...'"
@@ -33,10 +33,8 @@ pipeline {
             steps {
                 sh "echo 'Running Docker container...'"
                 sh "sleep 3"
-                sh "docker run -d -p 80:$PORT \
-                -e PORT=$PORT \
-                --name $DOCKER_IMAGE \
-                ${DOCKERHUB_CREDENTIALS_USR}/$DOCKER_IMAGE"
+                sh "export PORT=80"
+                sh "docker run -d -p 80:$PORT -e PORT=$PORT --name $DOCKER_IMAGE ${DOCKERHUB_CREDENTIALS_USR}/$DOCKER_IMAGE"
             }
         }
 

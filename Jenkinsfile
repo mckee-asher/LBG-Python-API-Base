@@ -34,11 +34,6 @@ pipeline {
                 sh "echo 'Running Docker container...'"
                 sh "sleep 3"
                 sh "docker run -d -p 80:80 -e PORT=80 --name ${APP_NAME} ${DOCKERHUB_CREDENTIALS_USR}/${APP_NAME}"
-            }
-        }
-
-        stage('Print status') {
-            steps {
                 sh "docker ps -a"
                 sh "docker images"
             }
@@ -50,6 +45,13 @@ pipeline {
                 sh "docker push ${DOCKERHUB_CREDENTIALS_USR}/${APP_NAME}:latest"
                 sh "docker logout"
             }
+        }
+
+        stage('Unit Test') {
+            steps {
+                sh "python lbg.test.py"
+            }
+
         }
     }
 

@@ -16,9 +16,29 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh "echo 'Building the Docker image...'"
+                sh "sleep 3"
                 sh "docker build -t ${DOCKERHUB_CREDENTIALS_USR}/${APP_NAME}:latest ."
+                sh "echo 'Modifying the application...'"
+                sh "sleep 3"
+                sh "export PORT=5001"
+                sh "echo 'Modifications done. Port is now set to $PORT'"
+                sh "docker build -t ${DOCKERHUB_CREDENTIALS_USR}/${APP_NAME}:latest ."
+                sh "echo 'Building docker image complete'"
            }
         }
+
+        stage('Run') {
+            steps {
+                sh "echo 'Running Docker container...'"
+                sh "sleep 3"
+                sh "docker run -d -p 80:$PORT \\
+                -e PORT=$PORT \\
+                --name $DOCKER_IMAGE \\
+                ${DOCKERHUB_CREDENTIALS_USR}/$DOCKER_IMAGE"
+            }
+        }
+        
         stage('Print status') {
             steps {
                 sh "docker ps -a"

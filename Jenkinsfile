@@ -14,6 +14,7 @@ pipeline {
                 sh "echo 'Cleanup done.'"
             }
         }
+        
         stage('Build') {
             steps {
                 sh "echo 'Building the Docker image...'"
@@ -32,19 +33,20 @@ pipeline {
             steps {
                 sh "echo 'Running Docker container...'"
                 sh "sleep 3"
-                sh "docker run -d -p 80:$PORT \\
-                -e PORT=$PORT \\
-                --name $DOCKER_IMAGE \\
+                sh "docker run -d -p 80:$PORT \
+                -e PORT=$PORT \
+                --name $DOCKER_IMAGE \
                 ${DOCKERHUB_CREDENTIALS_USR}/$DOCKER_IMAGE"
             }
         }
-        
+
         stage('Print status') {
             steps {
                 sh "docker ps -a"
                 sh "docker images"
             }
         }
+
         stage('Push Images') {
             steps {
                 sh "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
@@ -53,6 +55,7 @@ pipeline {
             }
         }
     }
+
     post {
         success {
             echo "success"

@@ -5,9 +5,18 @@ pipeline {
     }
     agent any
     stages {
+        stage('Prepare Environment') {
+            steps {
+                sh "echo 'Cleaning up previous build artifacts...'"
+                sh "sleep 3"
+                sh "docker rm -f \$(docker ps -aq) || true"
+                sh "docker rmi -f \$(docker images) || true"
+                sh "echo 'Cleanup done.'"
+            }
+        }
         stage('Build') {
             steps {
-                sh "sh setup.sh"
+                sh "docker build -t ${DOCKERHUB_CREDENTIALS_USR}/${APP_NAME}:latest ."
            }
         }
         stage('Print status') {
@@ -31,9 +40,5 @@ pipeline {
         failure {
             echo "failure"
         }
-        // always {
-        //     // sh "docker rm -f \$(docker ps -aq) || sleep 1"
-        //     // sh "docker system prune -f"
-        // }
     }
 }

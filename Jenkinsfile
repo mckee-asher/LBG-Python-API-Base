@@ -33,7 +33,7 @@ pipeline {
             steps {
                 sh "echo 'Running Docker container...'"
                 sh "sleep 3"
-                sh "docker run -d -p 80:80 -e PORT=80 --name $DOCKER_IMAGE ${DOCKERHUB_CREDENTIALS_USR}/$DOCKER_IMAGE"
+                sh "docker run -d -p 80:80 -e PORT=80 --name ${APP_NAME} ${DOCKERHUB_CREDENTIALS_USR}/${APP_NAME}"
             }
         }
 

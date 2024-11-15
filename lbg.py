@@ -181,7 +181,7 @@ def delete_one(_id):
     DELETE (Delete)
     """
     # log that we are running the delete operation
-    print('Delete - DELETE')
+    print('Delete - DELETE ONE')
 
     # find data in database BY using the id
     item = ItemModel.query.filter_by(_id=int(_id)).first()
@@ -197,6 +197,29 @@ def delete_one(_id):
     else:
         # log the item ID being returned
         print(f'Deleted item id: {_id}')
+
+    # otherwise 200 - OK
+    return "OK", status.HTTP_200_OK
+
+@app.route('/deleteAll', methods=['DELETE'])
+def delete_all():
+    """
+    DELETE (Delete all)
+    """
+
+    items = ItemModel.query.all()
+    print(items)
+
+    try:
+        for item in items:
+            db.session.delete(item)
+            db.session.commit()
+    except exc.SQLAlchemyError as err:
+        # if there is an error, send back the error (0 to match previous API implementation)
+        print(f'Error deleting all: {err}')
+    else:
+        # log that we are running the delete all operation
+        print('Delete - DELETE ALL')
 
     # otherwise 200 - OK
     return "OK", status.HTTP_200_OK

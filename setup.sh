@@ -15,7 +15,7 @@ cleanup() {
 build_docker() {
     echo "Building the Docker image..."
     sleep 3
-    docker build -t $DOCKER_IMAGE .
+    docker build -t ${DOCKERHUB_CREDENTIALS_USR}/$DOCKER_IMAGE .
 }
 # Function to modify the application
 modify_app() {
@@ -28,7 +28,10 @@ modify_app() {
 run_docker() {
     echo "Running Docker container..."
     sleep 3
-    docker run -d -p 80:$PORT -e PORT=$PORT --name $DOCKER_IMAGE $DOCKER_IMAGE
+    docker run -d -p 80:$PORT \
+    -e PORT=$PORT \
+    --name $DOCKER_IMAGE \
+    ${DOCKERHUB_CREDENTIALS_USR}/$DOCKER_IMAGE
 }
 # Main script execution
 echo "Starting build process..."

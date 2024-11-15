@@ -1,7 +1,7 @@
 pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials("DOCKERHUB_CREDENTIALS")
-        APP_NAME = "flask_app_project"
+        APP_NAME = "flask-app-project"
     }
     agent any
     stages {
@@ -19,7 +19,7 @@ pipeline {
         stage('Push Images') {
             steps {
                 sh "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
-                sh "docker push ${DOCKERHUB_CREDENTIALS_USR}/flask_app_project:latest"
+                sh "docker push ${DOCKERHUB_CREDENTIALS_USR}/${APP_NAME}:latest"
                 sh "docker logout"
             }
         }

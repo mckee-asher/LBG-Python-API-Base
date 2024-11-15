@@ -32,8 +32,8 @@ pipeline {
             echo "failure"
         }
         always {
-            sh "docker rm -f \$(docker ps -aq) || sleep 1"
-            sh "docker system prune -f"
+            // sh "docker rm -f \$(docker ps -aq) || sleep 1"
+            // sh "docker system prune -f"
         }
     }
 }

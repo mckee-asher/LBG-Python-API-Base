@@ -10,6 +10,12 @@ pipeline {
                 sh "sh setup.sh"
            }
         }
+        stage('Print status') {
+            steps {
+                sh "docker ps -a"
+                sh "docker images"
+            }
+        }
         stage('Push Images') {
             steps {
                 sh "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"

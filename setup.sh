@@ -2,7 +2,7 @@
 # Exit script if any command fails
 set -e
 # Define Docker image name
-DOCKER_IMAGE="lbg"
+DOCKER_IMAGE="flask-app-project"
 cleanup() {
     echo "Cleaning up previous build artifacts..."
     sleep 3
@@ -28,10 +28,7 @@ modify_app() {
 run_docker() {
     echo "Running Docker container..."
     sleep 3
-    docker run -d \
-    -p 80:$PORT \
-    -e PORT=$PORT $DOCKER_IMAGE \
-    --name flask-app-project
+    docker run -d -p 80:$PORT -e PORT=$PORT --name $DOCKER_IMAGE $DOCKER_IMAGE
 }
 # Main script execution
 echo "Starting build process..."

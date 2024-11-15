@@ -49,7 +49,8 @@ pipeline {
 
         stage('Unit Test') {
             steps {
-                sh "python lbg.test.py"
+                // sh "python lbg_test.py"
+                sh "docker run  sh -c ${DOCKERHUB_CREDENTIALS_USR}/${APP_NAME}:latest 'py test'"
             }
 
         }

@@ -11,9 +11,11 @@ pipeline {
            }
         }
         stage('Push Images') {
-            sh "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
-            sh "docker push ${DOCKERHUB_CREDENTIALS_USR}/flask_app_project:latest"
-            sh "docker logout"
+            steps {
+                sh "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
+                sh "docker push ${DOCKERHUB_CREDENTIALS_USR}/flask_app_project:latest"
+                sh "docker logout"
+            }
         }
     }
     post {

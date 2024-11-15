@@ -28,7 +28,10 @@ modify_app() {
 run_docker() {
     echo "Running Docker container..."
     sleep 3
-    docker run -d -p 80:$PORT -e PORT=$PORT $DOCKER_IMAGE
+    docker run -d \
+    -p 80:$PORT \
+    -e PORT=$PORT $DOCKER_IMAGE \
+    --name flask-app-project
 }
 # Main script execution
 echo "Starting build process..."

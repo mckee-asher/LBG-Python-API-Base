@@ -9,7 +9,7 @@ data:
       server {
         listen 80;
         location / {
-          proxy_pass http://api-service-deployment:8080;
+          proxy_pass http://project-service:8080;
         }
       }
     }
